@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" media="screen and (max-width:1140px)"
+            href="mobile.css" type="text/css">
+    <title>Bhusuri Ki Maharani</title>
+
+<style>
+/* Animated committee portraits on the homepage; original photos stay fully visible. */
+.committee-animated-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;align-items:stretch}
+.committee-animated-grid .animated-member{min-width:0;overflow:hidden;animation:memberRise .75s cubic-bezier(.2,.75,.25,1) both;animation-delay:calc(var(--member-index)*100ms);transition:transform .35s ease,box-shadow .35s ease}
+.committee-animated-grid .animated-member:hover{transform:translateY(-9px) scale(1.015);box-shadow:0 18px 38px rgba(92,16,16,.2)}
+.committee-animated-grid .member-image{height:310px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#f4ead8;border-radius:12px}
+.committee-animated-grid .member-image img{width:100%;height:100%;object-fit:contain;object-position:center;transition:transform .6s ease;}
+.committee-animated-grid .animated-member:hover .member-image img{transform:scale(1.035)}
+@keyframes memberRise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){.committee-animated-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.committee-animated-grid .member-image{height:230px}.committee-animated-grid .member-info h3{font-size:15px}}
+@media(max-width:380px){.committee-animated-grid{grid-template-columns:1fr}.committee-animated-grid .member-image{height: min(110vw,400px)}}
+@media(prefers-reduced-motion:reduce){.committee-animated-grid .animated-member{animation:none;transition:none}.committee-animated-grid .member-image img{transition:none}}
+
+/* Homepage shows only first five committee members until View All is clicked */
+.committee-animated-grid .committee-hidden-member{display:none!important}
+.committee-animated-grid.show-all-members .committee-hidden-member{display:block!important}
+#view-all-members{border:0;cursor:pointer;font:inherit}
+
+/* Animated Puja Committee photo strip */
+.committee-moments-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin:32px 0 42px}
+.committee-moment{margin:0;overflow:hidden;border-radius:16px;background:#fff8ed;box-shadow:0 12px 32px rgba(61,20,10,.14);animation:momentReveal .85s cubic-bezier(.2,.75,.25,1) both;animation-delay:calc(var(--moment-index)*180ms);transition:transform .35s ease,box-shadow .35s ease}
+.committee-moment:hover{transform:translateY(-7px);box-shadow:0 18px 40px rgba(61,20,10,.22)}
+.committee-moment img{display:block;width:100%;height:300px;object-fit:cover;transition:transform .7s ease}
+.committee-moment:hover img{transform:scale(1.045)}
+.committee-moment figcaption{text-align:center;padding:13px 10px;color:#742b1d;font-weight:700;letter-spacing:.03em}
+@keyframes momentReveal{from{opacity:0;transform:translateY(30px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:700px){.committee-moments-grid{grid-template-columns:1fr;gap:16px}.committee-moment img{height:260px}}
+@media(prefers-reduced-motion:reduce){.committee-moment,.committee-moment img{animation:none;transition:none}}
+
+</style>
+
+</head>
+<body>
+    <section class="hero" id="home">
+
+    <!-- Navigation -->
+    <nav class="navbar">
+
+        <a href="#home" class="logo">
+            ॐ
+        </a>
+
+        <div class="nav-links">
+            <a href="#home" class="active">Home</a>
+            <a href="#puja">Our Puja</a>
+            <a href="#dates">Details</a>
+            <a href="#committee">Commettee</a>
+            <a href="#gallery">Gallery</a>
+            <a href="chanda.html" target="_blank" class="hindi chanda">सहयोग / चंदा</a>
+        </div>
+
+        <a href="#puja" class="nav-button">
+            <span>🔱</span>
+            महारानी
+            <span>🔱</span>
+        </a>
+
+     
+
+    </nav>
+
+
+    <!-- Hero Content -->
+    <div class="hero-content">
+
+        <div class="hero-text">
+
+            <div class="trishul">
+                🔱
+            </div>
+
+            <h1>
+               BHUSURI KI MAHARANI
+            </h1>
+
+            <h2>
+                GRAM-BHUSURI
+            </h2>
+
+            <div class="hero-line"></div>
+
+            <p class="hero-established">
+                ESTD. 1998
+                <span>|</span>
+                28 YEARS OF TRADITION
+            </p>
+
+            <p class="hero-tagline">
+                Sabke liye, Sabke saath, Hamari Puja
+            </p>
+
+            <div class="hero-info">
+
+                <div class="hero-info-item">
+                    <span class="info-icon">▣</span>
+                    <span>16 – 23 OCTOBER 2026</span>
+                </div>
+
+                <div class="hero-info-item">
+                    <span class="info-icon">●</span>
+                    <span>GRAM BHUSURI</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     ABOUT OUR PUJA
+========================= -->
+
+<section class="about-puja" id="puja">
+
+    <div class="about-container">
+
+        <!-- Left Content -->
+        <div class="about-content">
+
+            <h2>
+                ABOUT <span>OUR PUJA</span>
+            </h2>
+
+            <div class="about-line"></div>
+
+            <p>
+                Hamari Durga Puja 1998 se lagatar manayi ja rahi hai.
+                Ye sirf ek dharmik utsav nahi, balki hamare samaj,
+                sanskriti aur ekta ka prateek hai. Har saal hum sab
+                milkar Maa Durga ki bhakti, parampara aur sanskritik
+                virasat ko aur bhi bhavya roop me manate hain.
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa labore earum mollitia rerum tempore culpa dolorem sunt nam odit autem non deserunt illum, nulla, architecto sint, beatae maiores reprehenderit cupiditate tempora voluptatem quaerat quis quidem? Quos sed id non reprehenderit quam? Ex eos dolorem autem in cupiditate,
+                 iste ab illum, ipsam ea quod expedita rem earum deserunt 
+                 assumenda, quos obcaecati perspiciatis quasi. Tempora
+                  quaerat, a porro fugiat ducimus nostrum quisquam cum
+                   aliquid possimus adipisci labore asperiores dicta sint
+                    quibusdam sapiente rem neque perferendis officia ratione
+                    , itaque ut, est laborum at. Officia corporis hic maiores
+                     quasi, repellendus libero aliquid ex aut!
+            </p>
+
+            <a id="hamariytra-btn"href="#details" class="about-btn">
+                Hamari Yatra
+                <span>→</span>
+            </a>
+
+        </div>
+
+
+        <!-- Center Image -->
+        <div class="about-image">
+
+            <img
+                src="durga/ChatGPT Image Sep 29, 2026, 07_31_23 PM.png"
+                alt="Durga Puja Pandal"
+                loading="lazy"
+            >
+
+        </div>
+
+
+        <!-- Right Information -->
+        <div class="about-stats">
+
+            <div class="about-stat-card">
+
+                <span class="stat-icon">▣</span>
+
+                <strong>1998</strong>
+
+                <small>Established</small>
+
+            </div>
+
+
+            <div class="about-stat-card">
+
+                <span class="stat-icon">♟</span>
+
+                <strong>28+</strong>
+
+                <small>Years of Tradition</small>
+
+            </div>
+
+
+            <div class="about-stat-card">
+
+                <span class="stat-icon">▦</span>
+
+                <strong>2026</strong>
+
+                <small>Puja</small>
+
+            </div>
+
+
+            <div class="about-stat-card">
+
+                <span class="stat-icon">♟</span>
+
+                <strong>For Everyone</strong>
+
+                <small>Our Community</small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+ <!-- =========================
+     PUJA DATES
+========================= -->
+
+<section class="puja-dates" id="dates">
+
+    <div class="dates-container">
+
+        <!-- Section Heading -->
+
+        <div class="dates-heading">
+
+            <span class="dates-small-title">
+                श्री दुर्गा पूजा सेवा समिति 
+            </span>
+
+            <h2>
+                PUJA <span>DATES</span>
+            </h2>
+
+            <div class="dates-line"></div>
+
+            <p>
+                Maa Durga ke pavitra utsav ke sabhi
+                mahatvapurn din aur karyakram.
+            </p>
+
+        </div>
+
+
+        <!-- Dates Timeline -->
+
+        <div class="dates-wrapper">
+
+            <div class="dates-timeline">
+
+
+                <!-- Mahalaya -->
+
+                <article class="date-card">
+
+                    <div class="date-icon">
+                        🪷
+                    </div>
+
+                    <div class="date-number">
+                        16
+                    </div>
+
+                    <div class="date-month">
+                        OCTOBER
+                    </div>
+
+                    <div class="date-name">
+                        आगमन
+                    </div>
+
+                    <div class="date-day">
+                        FRIDAY
+                    </div>
+
+                </article>
+
+
+                <!-- Shashthi -->
+
+                <article class="date-card">
+
+                    <div class="date-icon">
+                        🌸
+                    </div>
+
+                    <div class="date-number">
+                        17
+                    </div>
+
+                    <div class="date-month">
+                        OCTOBER
+                    </div>
+
+                    <div class="date-name">
+                        मुख दर्शन
+                    </div>
+
+                    <div class="date-day">
+                        SATURDAY
+                    </div>
+
+                </article>
+
+
+                <!-- Saptami -->
+
+                <article class="date-card">
+
+                    <div class="date-icon">
+                        🌺
+                    </div>
+
+                    <div class="date-number">
+                        18
+                    </div>
+
+                    <div class="date-month">
+                        OCTOBER
+                    </div>
+
+                    <div class="date-name">
+                        पूजा
+                    </div>
+
+                    <div class="date-day">
+                        SUNDAY
+                    </div>
+
+                </article>
+
+
+                <!-- Ashtami -->
+
+                <article class="date-card">
+
+                    <div class="date-icon">
+                        🪔
+                    </div>
+
+                    <div class="date-number">
+                        19
+                    </div>
+
+                    <div class="date-month">
+                        OCTOBER
+                    </div>
+
+                    <div class="date-name">
+                        पूजा
+                    </div>
+
+                    <div class="date-day">
+                        MONDAY
+                    </div>
+
+                </article>
+
+
+                <!-- Navami -->
+
+                <article class="date-card">
+
+                    <div class="date-icon">
+                        🌼
+                    </div>
+
+                    <div class="date-number">
+                        21
+                    </div>
+
+                    <div class="date-month">
+                        OCTOBER
+                    </div>
+
+                    <div class="date-name">
+                        मेला
+                    </div>
+
+                    <div class="date-day">
+                        WEDNESDAY
+                    </div>
+
+                </article>
+
+
+                <!-- Dashami -->
+
+                <article class="date-card">
+
+                    <div class="date-icon">
+                        🔱
+                    </div>
+
+                    <div class="date-number">
+                        23
+                    </div>
+
+                    <div class="date-month">
+                        OCTOBER
+                    </div>
+
+                    <div class="date-name">
+                        विसर्जन
+                    </div>
+
+                    <div class="date-day">
+                        FRIDAY
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     COMMITTEE SECTION
+========================= -->
+
+<section class="committee-section" id="committee">
+
+    <div class="committee-container">
+
+        <!-- Heading -->
+
+        <div class="committee-heading">
+
+            <span class="committee-subtitle">
+                OUR TEAM
+            </span>
+
+            <h2>
+                PUJA <span>COMMITTEE</span>
+            </h2>
+
+            <div class="committee-line"></div>
+
+            <p>
+                Maa Durga ke utsav ko safal banane mein
+                hamare committee members ka mahatvapurn yogdan.
+            </p>
+
+        </div>
+
+
+        <!-- Committee Members -->
+
+        <div class="committee-grid committee-animated-grid">
+<article class="committee-card animated-member" style="--member-index:0">
+ <div class="member-image"><img src="images/members/member-01.jpg" alt="पूजा समिति सदस्य 01" loading="lazy"></div>
+ <div class="member-info"><h3>सतीश चौहान</h3><p class="member-role">कमेटी सदस्य</p></div>
+ </article>
+<article class="committee-card animated-member" style="--member-index:1">
+ <div class="member-image"><img src="images/members/member-02.jpg" alt="पूजा समिति सदस्य 02" loading="lazy"></div>
+ <div class="member-info"><h3>जितेंद्र चौहान</h3><p class="member-role">कमेटी सदस्य</p></div>
+ </article>
+<article class="committee-card animated-member" style="--member-index:2">
+ <div class="member-image"><img src="images/members/member-03.jpg" alt="पूजा समिति सदस्य 03" loading="lazy"></div>
+ <div class="member-info"><h3>रामभवन चौहान</h3><p class="member-role">कमेटी सदस्य</p></div>
+ </article>
+<article class="committee-card animated-member" style="--member-index:3">
+ <div class="member-image"><img src="images/members/member-04.jpg" alt="पूजा समिति सदस्य 04" loading="lazy"></div>
+ <div class="member-info"><h3>सुधीर चौहान</h3><p class="member-role">कमेटी सदस्य</p></div>
+ </article>
+<article class="committee-card animated-member" style="--member-index:4">
+ <div class="member-image"><img src="images/members/member-05.jpg" alt="पूजा समिति सदस्य 05" loading="lazy"></div>
+ <div class="member-info"><h3>शशांक चौहान</h3><p class="member-role">कमेटी सदस्य</p></div>
+ </article>
+<article class="committee-card animated-member committee-hidden-member" style="--member-index:5">
+ <div class="member-image"><img src="images/members/member-06.jpg" alt="पूजा समिति सदस्य 06" loading="lazy"></div>
+ <div class="member-info"><h3>राममिलन चौहान</h3><p class="member-role">कमेटी सदस्य</p></div>
+ </article>
+<article class="committee-card animated-member committee-hidden-member" style="--member-index:6">
+ <div class="member-image"><img src="images/members/member-07.jpg" alt="पूजा समिति सदस्य 07" loading="lazy"></div>
+ <div class="member-info"><h3>आकाश चौहान</h3><p class="member-role">कमेटी सदस्य</p></div>
+ </article>
+<article class="committee-card animated-member committee-hidden-member" style="--member-index:7">
+ <div class="member-image"><img src="images/members/member-08.jpg" alt="पूजा समिति सदस्य 08" loading="lazy"></div>
+ <div class="member-info"><h3>अभिषेक चौहान</h3><p class="member-role">कमेटी सदस्य</p></div>
+ </article>
+<article class="committee-card animated-member committee-hidden-member" style="--member-index:8">
+ <div class="member-image"><img src="images/members/member-09.jpg" alt="पूजा समिति सदस्य 09" loading="lazy"></div>
+ <div class="member-info"><h3>राजवीर चौहान</h3><p class="member-role">कमेटी सदस्य</p></div>
+ </article>
+<article class="committee-card animated-member committee-hidden-member" style="--member-index:9">
+ <div class="member-image"><img src="images/members/member-10.jpg" alt="पूजा समिति सदस्य 10" loading="lazy"></div>
+ <div class="member-info"><h3>मुकेश चौहान</h3><p class="member-role">कमेटी सदस्य</p></div>
+ </article>
+<article class="committee-card animated-member committee-hidden-member" style="--member-index:10">
+ <div class="member-image"><img src="images/members/member-11.jpg" alt="पूजा समिति सदस्य 11" loading="lazy"></div>
+ <div class="member-info"><h3>अभिजीत गोंड</h3><p class="member-role">कमेटी सदस्य</p></div>
+ </article>
+</div>
+
+    </div>
+    <div id="commettee-btn">
+     <button id="view-all-members" type="button" class="about-btn" aria-expanded="false">
+                View All Members
+                <span>→</span>
+            </button>
+   </div>
+</section>
+
+<!-- =========================
+     DURGA PUJA GALLERY
+========================= -->
+
+<section class="gallery-section" id="gallery">
+
+    <div class="gallery-container">
+
+        <!-- Heading -->
+
+        <div class="gallery-heading">
+
+            <span class="gallery-subtitle">
+                MEMORIES & MOMENTS
+            </span>
+
+            <h2>
+                DURGA PUJA <span>GALLERY</span>
+            </h2>
+
+            <div class="gallery-line"></div>
+
+            <p>
+                Hamari Durga Puja ke kuch yaadgaar pal,
+                bhakti aur utsav ki tasveerein.
+            </p>
+
+        </div>
+
+
+        <!-- Gallery -->
+
+        <div class="gallery-grid gallery-uploaded-grid">
+            <a data-original="images/puja-moments/durga-idol-2026.jpg" class="gallery-item gallery-large"><img src="images/puja-moments/durga-idol-2026.jpg" alt="Maa Durga idol at Bhusuri Puja" loading="lazy"><div class="gallery-overlay"><span>View Photo</span></div></a>
+            <a data-original="images/puja-moments/committee-ritual-feet.jpg" class="gallery-item"><img src="images/puja-moments/committee-ritual-feet.jpg" alt="Puja committee ritual" loading="lazy"><div class="gallery-overlay"><span>View Photo</span></div></a>
+            <a data-original="images/puja-moments/durga-idol-evening.jpg" class="gallery-item"><img src="images/puja-moments/durga-idol-evening.jpg" alt="Maa Durga idol and lion" loading="lazy"><div class="gallery-overlay"><span>View Photo</span></div></a>
+            <a data-original="images/puja-moments/committee-prayer.jpg" class="gallery-item gallery-tall"><img src="images/puja-moments/committee-prayer.jpg" alt="Puja committee prayer gathering" loading="lazy"><div class="gallery-overlay"><span>View Photo</span></div></a>
+            <a data-original="images/puja-moments/committee-havan.jpg" class="gallery-item"><img src="images/puja-moments/committee-havan.jpg" alt="Puja committee havan gathering" loading="lazy"><div class="gallery-overlay"><span>View Photo</span></div></a>
+        </div>
+
+
+        <!-- Gallery Button -->
+
+        <div class="gallery-button-wrap">
+
+            <a class="gallery-button" href="gallery.html" target="_blank">
+                View All Photos
+                <span>→</span>
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="lightbox">
+
+    <button class="lightbox-close">×</button>
+
+    <button class="lightbox-prev">←</button>
+
+    <img class="lightbox-image" src="" alt="">
+
+    <button class="lightbox-next">→</button>
+
+</div>
+
+</section>
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="site-footer">
+
+    <div class="footer-container">
+
+
+        <!-- =========================
+             ABOUT
+        ========================= -->
+
+        <div class="footer-column footer-about">
+
+            <a href="#home" class="footer-logo">
+                ॐ
+            </a>
+
+            <h2>
+                BHUSURI KI MAHARANI
+            </h2>
+
+            <p class="footer-samiti">
+                PUJA COMMITTEE
+            </p>
+
+            <p>
+                Bhakti, parampara aur ekta ke saath
+                Maa Durga ka pavitra utsav manane wali
+                hamari samiti.
+            </p>
+
+        </div>
+
+
+       
+
+        <!-- =========================
+             PUJA DETAILS
+        ========================= -->
+
+        <div class="footer-column">
+
+            <h3>
+                PUJA DETAILS
+            </h3>
+
+            <div class="footer-line"></div>
+
+            <div class="footer-detail">
+
+                <span class="footer-icon">
+                    ◈
+                </span>
+
+                <div>
+                    <strong>
+                        Puja Dates
+                    </strong>
+
+                    <p>
+                        17 – 23 October 2026
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="footer-detail">
+
+                <span class="footer-icon">
+                    ◈
+                </span>
+
+                <div>
+                    <strong>
+                        Address
+                    </strong>
+
+                    <p>
+                        Gram - Bhusuri
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             CONTACT
+        ========================= -->
+
+        <div class="footer-column developer">
+            <div>
+            <h3>
+                DEVElOPER
+            </h3>
+            
+            <div class="footer-line"></div>
+            </div>
+            <div class="footer-detail dveloper-detail">
+            <div class="abhijeet-section">
+                <h4>Abhijeet Gond </h4>
+                <div class="email">
+
+                    <strong>
+                        Email
+                    </strong>
+
+                    <a href="mailto:your@email.com">
+                        abhijeetgond21@gmail.com
+                    </a>
+
+                </div>
+
+                            <!-- Pnone Number -->
+                <div class="email">
+                 <strong>
+                        Phone
+                    </strong>
+
+                    <a href="tel:+918127917298">
+                        +91 8127917298
+                    </a>
+
+                </div>
+
+                <div class="link_box">
+                   <img src="durga/Instagram2.svg" alt="">
+                   <img src="durga/Facebook.svg" alt="">
+                   <img src="durga/x.svg" alt="">
+             </div>
+            
+
+            </div>
+            <div class="akash-section">
+                <h4>Akash Chauhan </h4>
+                <div class="email">
+
+                    <strong>
+                        Email 
+                    </strong>
+
+                    <a href="mailto:your@email.com">
+                        abhijeetgond21@gmail.com
+                    </a>
+
+                </div>
+
+                            <!-- Pnone Number -->
+                <div class="email">
+                 <strong>
+                        Phone
+                    </strong>
+
+                    <a href="tel:+918127917298">
+                        +91 8115904002
+                    </a>
+
+                </div>
+
+                <div class="link_box">
+                   <img src="durga/Instagram2.svg" alt="">
+                   <img src="durga/Facebook.svg" alt="">
+                   <img src="durga/x.svg" alt="">
+             </div>
+            
+            </div>
+           </div>
+           
+        </div>
+
+
+    </div>
+
+
+    <!-- =========================
+         FOOTER BOTTOM
+    ========================= -->
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 Shree Shree Durga Puja Committee.
+            All Rights Reserved.
+        </p>
+
+        <p>
+            Made with devotion &amp; love.
+        </p>
+
+    </div>
+
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
