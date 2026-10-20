@@ -10,21 +10,22 @@
 
 <style>
 /* Animated committee portraits on the homepage; original photos stay fully visible. */
-.committee-animated-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;align-items:stretch}
-.committee-animated-grid .animated-member{min-width:0;overflow:hidden;animation:memberRise .75s cubic-bezier(.2,.75,.25,1) both;animation-delay:calc(var(--member-index)*100ms);transition:transform .35s ease,box-shadow .35s ease}
+.committee-animated-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;align-items:stretch}
+.committee-animated-grid .animated-member{box-sizing:border-box;flex-direction:column;align-items:stretch;min-width:0;height:100%;padding:10px;gap:10px;overflow:hidden;animation:memberRise .75s cubic-bezier(.2,.75,.25,1) both;animation-delay:calc(var(--member-index)*100ms);transition:transform .35s ease,box-shadow .35s ease}
 .committee-animated-grid .animated-member:hover{transform:translateY(-9px) scale(1.015);box-shadow:0 18px 38px rgba(92,16,16,.2)}
-.committee-animated-grid .member-image{height:310px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#f4ead8;border-radius:12px}
-.committee-animated-grid .member-image img{width:100%;height:100%;object-fit:contain;object-position:center;transition:transform .6s ease;}
+.committee-animated-grid .member-image{box-sizing:border-box;width:100%;height:230px;padding:6px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#f1e8d6;border-radius:12px}
+.committee-animated-grid .member-image img{width:100%;height:100%;object-fit:contain;object-position:center;border-radius:6px;background:#f1e8d6;transition:transform .6s ease;}
+.committee-animated-grid .member-info{text-align:center;padding:0 4px 4px}
+.committee-animated-grid .member-info h3{overflow-wrap:anywhere}
 .committee-animated-grid .animated-member:hover .member-image img{transform:scale(1.035)}
 @keyframes memberRise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:600px){.committee-animated-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.committee-animated-grid .member-image{height:230px}.committee-animated-grid .member-info h3{font-size:15px}}
+@media(max-width:600px){.committee-animated-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.committee-animated-grid .animated-member{padding:9px;gap:8px}.committee-animated-grid .member-image{height:180px}.committee-animated-grid .member-info h3{font-size:15px}}
 @media(max-width:380px){.committee-animated-grid{grid-template-columns:1fr}.committee-animated-grid .member-image{height: min(110vw,400px)}}
 @media(prefers-reduced-motion:reduce){.committee-animated-grid .animated-member{animation:none;transition:none}.committee-animated-grid .member-image img{transition:none}}
 
-/* Homepage shows only first five committee members until View All is clicked */
+/* The homepage previews four committee members; the link opens the full list. */
 .committee-animated-grid .committee-hidden-member{display:none!important}
-.committee-animated-grid.show-all-members .committee-hidden-member{display:block!important}
-#view-all-members{border:0;cursor:pointer;font:inherit}
+#view-all-members{text-decoration:none}
 
 /* Animated Puja Committee photo strip */
 .committee-moments-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin:32px 0 42px}
@@ -469,8 +470,8 @@
  <div class="member-info"><h3>सतीश चौहान</h3><p class="member-role">कमेटी सदस्य</p></div>
  </article>
 <article class="committee-card animated-member" style="--member-index:1">
- <div class="member-image"><img src="images/members/member-02.jpg" alt="पूजा समिति सदस्य 02" loading="lazy"></div>
- <div class="member-info"><h3>जितेंद्र चौहान</h3><p class="member-role">कमेटी सदस्य</p></div>
+ <div class="member-image"><img src="images/members/member-11.jpg" alt="पूजा समिति सदस्य 11" loading="lazy"></div>
+ <div class="member-info"><h3>अभिजीत गोंड</h3><p class="member-role">कमेटी सदस्य</p></div>
  </article>
 <article class="committee-card animated-member" style="--member-index:2">
  <div class="member-image"><img src="images/members/member-03.jpg" alt="पूजा समिति सदस्य 03" loading="lazy"></div>
@@ -480,7 +481,7 @@
  <div class="member-image"><img src="images/members/member-04.jpg" alt="पूजा समिति सदस्य 04" loading="lazy"></div>
  <div class="member-info"><h3>सुधीर चौहान</h3><p class="member-role">कमेटी सदस्य</p></div>
  </article>
-<article class="committee-card animated-member" style="--member-index:4">
+<article class="committee-card animated-member committee-hidden-member" style="--member-index:4">
  <div class="member-image"><img src="images/members/member-05.jpg" alt="पूजा समिति सदस्य 05" loading="lazy"></div>
  <div class="member-info"><h3>शशांक चौहान</h3><p class="member-role">कमेटी सदस्य</p></div>
  </article>
@@ -504,18 +505,19 @@
  <div class="member-image"><img src="images/members/member-10.jpg" alt="पूजा समिति सदस्य 10" loading="lazy"></div>
  <div class="member-info"><h3>मुकेश चौहान</h3><p class="member-role">कमेटी सदस्य</p></div>
  </article>
-<article class="committee-card animated-member committee-hidden-member" style="--member-index:10">
- <div class="member-image"><img src="images/members/member-11.jpg" alt="पूजा समिति सदस्य 11" loading="lazy"></div>
- <div class="member-info"><h3>अभिजीत गोंड</h3><p class="member-role">कमेटी सदस्य</p></div>
+
+ <article class="committee-card animated-member committee-hidden-member" style="--member-index:11">
+ <div class="member-image"><img src="images/members/member-02.jpg" alt="पूजा समिति सदस्य 02" loading="lazy"></div>
+ <div class="member-info"><h3>जितेंद्र चौहान</h3><p class="member-role">कमेटी सदस्य</p></div>
  </article>
 </div>
 
     </div>
     <div id="commettee-btn">
-     <button id="view-all-members" type="button" class="about-btn" aria-expanded="false">
+     <a id="view-all-members" href="committee.html" class="about-btn">
                 View All Members
                 <span>→</span>
-            </button>
+            </a>
    </div>
 </section>
 

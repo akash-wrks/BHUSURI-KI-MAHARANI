@@ -38,22 +38,6 @@ let body = document.querySelector("body");
 
 
 
-// Show only five committee members on the homepage; reveal the rest on demand.
-const committeeGrid = document.querySelector(".committee-animated-grid");
-const viewAllMembersBtn = document.querySelector("#view-all-members");
-if (committeeGrid && viewAllMembersBtn) {
-    viewAllMembersBtn.addEventListener("click", () => {
-        const expanded = committeeGrid.classList.toggle("show-all-members");
-        viewAllMembersBtn.setAttribute("aria-expanded", String(expanded));
-        viewAllMembersBtn.innerHTML = expanded
-            ? 'Show Less <span>↑</span>'
-            : 'View All Members <span>→</span>' ;
-        if (!expanded) {
-            document.querySelector("#commettee-btn").scrollIntoView({ behavior: "smooth", block: "center" });
-        }
-    });
-}
-
         //    Gallery Section
 
 
